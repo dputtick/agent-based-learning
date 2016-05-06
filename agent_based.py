@@ -1,6 +1,3 @@
-# I want to define a bunch of agents
-# They could be objects or functions?
-# They all need to have attributes that describe their connections
 import random as r
 
 
@@ -23,7 +20,7 @@ def binary_string(length):
     return string_root.format(r.randint(0, end_range))
 
 
-def binary_string_diff(string1, string2):
+def binary_string_score(string1, string2):
     result_string = ''
     for index, value in enumerate(string1):
         if value == string2[index]:
@@ -32,11 +29,12 @@ def binary_string_diff(string1, string2):
             result_string += '0'
     return result_string, result_string.count('1')
 
+
 def main(reality_size=5):
     reality = binary_string(reality_size)
     agents = {i: Agent(i, reality_size) for i in range(6)}
     for agent in agents:
-        print(binary_string_diff(reality, agents[agent].knowledge_state))
+        print(binary_string_score(reality, agents[agent].knowledge_state))
 
 
 if __name__ == '__main__':
